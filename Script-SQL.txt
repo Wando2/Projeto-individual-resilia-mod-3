@@ -1,0 +1,59 @@
+DROP TABLE IF EXISTS Cursos;
+DROP TABLE IF EXISTS turmas;
+DROP TABLE IF EXISTS Alunos;
+DROP TABLE IF EXISTS facilitadores;
+DROP TABLE IF EXISTS matrícula ;
+DROP TABLE IF EXISTS polos;
+
+
+CREATE TABLE Cursos (
+id_cursos INT PRIMARY KEY NOT NULL,
+nomes VARCHAR(30) NOT NULL,
+carga horária  VARCHAR(30) NOT NULL,
+valor VARCHAR(30) NOT NULL);
+
+CREATE TABLE turmas (
+id_turmas INT PRIMARY KEY NOT NULL,
+id_cursos INT NOT NULL,
+id_facilitadores INT NOT NULL,
+id_alunos INT NOT NULL);
+
+CREATE TABLE Alunos (
+id_alunos INT PRIMARY KEY NOT NULL,
+id_cursos INT NOT NULL,
+nome VARCHAR(50) NOT NULL,
+cpf VARCHAR(11) NOT NULL,
+data de nascimento  DATE NOT NULL,
+telefone CHAR(11) NOT NULL,
+endereço  VARCHAR(30) NOT NULL);
+
+CREATE TABLE facilitadores (
+id_facilitadores INT PRIMARY KEY NOT NULL,
+nome VARCHAR(50) NOT NULL,
+cpf VARCHAR(11) NOT NULL,
+data de nascimento  DATE NOT NULL,
+telefone CHAR(11) NOT NULL,
+endereço  VARCHAR(30) NOT NULL,
+formação  VARCHAR(30) NOT NULL);
+
+CREATE TABLE matrícula  (
+id_matricula INT PRIMARY KEY NOT NULL,
+id_alunos INT NOT NULL,
+id_cursos INT NOT NULL,
+data TIMESTAMP NOT NULL);
+
+CREATE TABLE polos (
+id_polos INT PRIMARY KEY NOT NULL,
+id-facilitadores INT NOT NULL,
+id_tumas INT NOT NULL,
+bairro VARCHAR(30) NOT NULL,
+endereço  VARCHAR(30) NOT NULL);
+
+ALTER TABLE turmas ADD CONSTRAINT turmas_id_cursos_Cursos_id_cursos FOREIGN KEY (id_cursos) REFERENCES Cursos(id_cursos);
+ALTER TABLE turmas ADD CONSTRAINT turmas_id_facilitadores_facilitadores_id_facilitadores FOREIGN KEY (id_facilitadores) REFERENCES facilitadores(id_facilitadores);
+ALTER TABLE turmas ADD CONSTRAINT turmas_id_alunos_Alunos_id_alunos FOREIGN KEY (id_alunos) REFERENCES Alunos(id_alunos);
+ALTER TABLE Alunos ADD CONSTRAINT Alunos_id_cursos_Cursos_id_cursos FOREIGN KEY (id_cursos) REFERENCES Cursos(id_cursos);
+ALTER TABLE matrícula  ADD CONSTRAINT matrícula _id_alunos_Alunos_id_alunos FOREIGN KEY (id_alunos) REFERENCES Alunos(id_alunos);
+ALTER TABLE matrícula  ADD CONSTRAINT matrícula _id_cursos_Cursos_id_cursos FOREIGN KEY (id_cursos) REFERENCES Cursos(id_cursos);
+ALTER TABLE polos ADD CONSTRAINT polos_id-facilitadores_facilitadores_id_facilitadores FOREIGN KEY (id-facilitadores) REFERENCES facilitadores(id_facilitadores);
+ALTER TABLE polos ADD CONSTRAINT polos_id_tumas_turmas_id_turmas FOREIGN KEY (id_tumas) REFERENCES turmas(id_turmas);
